@@ -25,7 +25,7 @@ $('article p:last-of-type').remove();
 let randSize = Math.round(Math.random()*100);
 $('#title').css('fontSize', randSize);
 
-//4.
+//4. Could make a new element in jQuery here rather than chaining.
 $('ol').append('<li>Another incredible item in this list</li>');
 
 //$list = $('<li>').text('another incredible...');
@@ -34,40 +34,39 @@ $('ol').append('<li>Another incredible item in this list</li>');
 //5.
 $('aside').empty().append("<p>I'm so sorry for the existence of lists");
 
-//6.
-//<input class="form-control" type="number" min="0" max="255" value="255"></input>
-//https://www.w3schools.com/jsref/dom_obj_event.asp
-//If not, try 'change' next
-
-
-
 
 //6.//TODO: not using jQuery, is there a better option?
 
+//Aim to be specific, use a specific CSS selector .mb-5 input[type]
+//almost never modifying a jQuery object, consider using const over let (for $colors)
 $('.mb-5').on('change', changeColor);
 function changeColor() {
   //loop through input elements, check value for each
   //let colors = [100, 100, 255];
+
+
   let $colors = $('input[type="number"]');
   console.log($colors);
 
   let colors = [];
   for (let color of $colors){
-
     colors.push(color.value);
   }
   console.log('colors array is: ', colors);
   //set style with .css to be [color1, color2, color3]
+  //jQuery object isn't an array by default, so would convert to Array.from($colors);
+  //const [red, green, blue] = colors.map(color => color.value);
   $('body').css({backgroundColor: `rgb( ${colors[0]}, ${colors[1]}, ${colors[2]})` })
 }
 
 
 //7.
-
 function deleteImg(evt){
-  //$evt.currentTarget.remove(); //possible jQuery way
+  //possible jQuery way?
   evt.target.remove();
 
+  //if you pass a vanilla DOM to a $( ), it will return a jQuery obj
+  //$(evt.target).remove();
 }
 
 $('img').on('click', deleteImg);
