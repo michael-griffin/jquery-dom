@@ -1,6 +1,11 @@
+
+//Why doesn't the jQuery version work?
 $(".movie-form").on('submit', handleForm);
 
-// document.querySelector(".submit").addEventListener('submit', handleForm);
+$('ul').on('click', 'button', deleteReview);
+
+/* const movieForm = document.querySelector(".movie-form");
+movieForm.addEventListener('submit', handleForm); */
 
 function handleForm(evt) {
   evt.preventDefault();
@@ -9,9 +14,47 @@ function handleForm(evt) {
   const $rating = $(".movie-rating").val();
   const $button = $("<button>").text("X");
 
-  const $listItem = $("<li>")
-    .text( `${$title} ${$rating}`)
-    .append($button);
 
+/*   const $listItem = $("<li>")
+    .text( `${$title} ${$rating} `)
+    .append($button); */
+  const $listItem = $("<li>")
+    .html( `<span class="movie-title">${$title}</span>` +
+    `<span class="movie-rating"> ${$rating}`)
+    .append($button);
   $(".movie-reviews").append($listItem);
+}
+
+
+//Ignore this, work in progress
+function deleteReview(evt){
+  //buttons are currently within li elements, so should be able to get
+  //parent from evt.target?
+
+  //hopefully:
+  //$(evt.target).parent().remove();
+  $(evt.target).parent().remove();
+}
+
+
+
+
+$('.alphabet-sort').on('click', handleAlphabetSort);
+$('.rating-sort').on('click', handleRatingSort);
+
+function handleAlphabetSort(){
+  //Possible ways to sort:
+  //select all list elements, get values, re add to dom?
+
+  $listItems = $('li').val(); //maybe use .toArray();
+
+  //sort $listItems by title
+  //transform
+
+  //remove from ul
+
+}
+
+function handleRatingSort(){
+
 }

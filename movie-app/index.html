@@ -8,15 +8,19 @@
   src="https://code.jquery.com/jquery-3.7.0.js"
   integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
   crossorigin="anonymous"></script>
-  <script src="app.js"></script>
+  <script src="app.js" defer="true"></script>
 </head>
 <body>
   <form class="movie-form">
-    <input type="text" class="movie-title" name="movie-title">
-    <input type="text" class="movie-rating" name="movie-rating">
-    <!-- <input type="submit" value="Submit" class="submit"> -->
-    <button class="submit">Submit</button>
+    <input type="text" class="movie-title" name="movie-title"
+    required minlength="2" maxlength="50">
+    <input type="number" class="movie-rating" name="movie-rating"
+    required min="0" max="10">
+    <input type="submit" value="Submit" class="submit">
+<!--     <button class="submit">Submit</button> -->
   </form>
+  <button class="alphabet-sort">Sort by Name</button>
+  <button class="rating-sort">Sort by Rating</button>
   <ul class="movie-reviews">
   </ul>
 </body>
